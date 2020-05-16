@@ -1,0 +1,119 @@
+openapi: 3.0.0
+info:
+  title: Lionsfort HR API
+  description: An API that allows users to obtain the existing information of employees
+    or post information of new employees
+  termsOfService: http://dummyurl.com
+  contact:
+    name: Satish Gunjal
+    url: www.satishgunjal.com
+    email: gunjal.satish@gmail.com
+  license:
+    name: Satish Gunjal License
+    url: http://dummyurl.com
+  version: 2.0.0
+servers:
+- url: http://dev.foo.com
+  description: Dev server
+- url: http://prod.foo.com
+  description: Prod server
+paths:
+  /employees:
+    get:
+      description: Obtain information about employees from HR database
+      operationId: employeesGET
+      parameters:
+      - name: bodyLimit
+        in: query
+        description: The amount of employees returned
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 20
+          minimum: 10
+          type: integer
+          example: 15
+      - name: pageLimit
+        in: query
+        description: The pages to return employee info
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 5
+          minimum: 1
+          type: integer
+          example: 2
+      responses:
+        "200":
+          description: Successful pull of emplyees info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employees'
+      x-swagger-router-controller: Default
+    post:
+      description: Creates a new employee in the database
+      operationId: employeesPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Employee'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Employee'
+        required: true
+      responses:
+        "200":
+          description: Successfully created a new employee
+      x-swagger-router-controller: Default
+  /employees/{id}:
+    get:
+      description: Gte information about specific employee
+      operationId: employeesIdGET
+      parameters:
+      - name: id
+        in: path
+        description: The id of the employee
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          example: 54
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Employee'
+      x-swagger-router-controller: Default
+components:
+  schemas:
+    Employees:
+      type: array
+      description: Array of employee info
+      items:
+        $ref: '#/components/schemas/Employee'
+    Employee:
+      properties:
+        id:
+          type: integer
+          example: 4
+        emplyee name:
+          type: string
+          example: Tanvi Sangle
+        emplyee title:
+          type: string
+          example: Team Lead
+      description: Model containing employee info
+      example:
+        id: 4
+        emplyee name: Tanvi Sangle
+        emplyee title: Team Lead
