@@ -1,7 +1,7 @@
 {
   "name": "lionsfort-hr-api",
   "version": "1.0.0",
-  "description": "desc",
+  "description": "An API that allows users to obtain the existing information of employees or post information of new employees",
   "main": "index.js",
   "scripts": {
 	"prestart": "npm install",

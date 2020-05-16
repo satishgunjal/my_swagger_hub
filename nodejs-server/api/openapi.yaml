@@ -1,7 +1,16 @@
 openapi: 3.0.0
 info:
   title: Lionsfort HR API
-  description: desc
+  description: An API that allows users to obtain the existing information of employees
+    or post information of new employees
+  termsOfService: http://dummyurl.com
+  contact:
+    name: Satish Gunjal
+    url: www.satishgunjal.com
+    email: gunjal.satish@gmail.com
+  license:
+    name: Satish Gunjal License
+    url: http://dummyurl.com
   version: 1.0.0
 servers:
 - url: /
